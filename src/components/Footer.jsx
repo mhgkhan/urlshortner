@@ -6,7 +6,7 @@ import {} from "react-icons/gr"
 const Footer = () => {
   return (
     <footer className='bg-blue-950'>
-        <div className="container mx-auto p-3 text-center text-lg text-white">
+        <div className="container mx-auto p-3 text-center text-xl text-white">
             <p>Copyright&copy; Allright reserved 2024 <span className="text-yellow-300">GH URL SHORTER</span> </p>
             <div className="flex items-center gap-4 justify-center">
               
