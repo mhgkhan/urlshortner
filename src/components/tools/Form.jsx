@@ -81,7 +81,7 @@ const Form = () => {
                         <ul className="mt-2">
                             <li className='w-full flex items-center justify-between gap-2 p-3 text-lg border border-1 border-blue-600 rounded-full bg-yellow-100 text-blue-600 italic'>
                                 <span className='active:scale-105 text-xl text-gray-600  cursor-pointer' onClick={()=>router.push("")} ><FaLink /></span> &nbsp;
-                                this is link this is link this is link this is link
+                                this is link this is 
                                 <span className='text-xl text-gray-600 cursor-pointer active:scale-105' onClick={()=>router.push("")} ><FaCopy /></span>
                             </li>
                         </ul>
