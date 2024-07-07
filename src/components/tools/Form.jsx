@@ -3,12 +3,22 @@
 import React, { useState } from 'react'
 import Loading from '../Loading';
 import ItemLink from './ItemLink';
+import { FaPaste } from 'react-icons/fa';
+import { Toaster, toast } from 'react-hot-toast';
 
-const Form = () => {
+const Form = ({ domain }) => {
 
 
     // states for form input 
     const [input, setInput] = useState("");
+
+
+    // response short urls states
+    const [reciveUrls, setRecieveUrls] = useState([]);
+    const [OriginalUrl, setOrignalUrl] = useState("");
+    //  if response is error
+    const [isResponseError, setIsResponseError] = useState(false);
+    const [responseError, setResponseError] = useState("");
 
 
 
@@ -41,18 +51,39 @@ const Form = () => {
     const [loading, setLoading] = useState(false)
 
     // submit the form 
-    const submitUrlForm = e => {
+    const submitUrlForm = async e => {
         e.preventDefault()
         setLoading(true)
         setIsActiveResult(true)
 
         try {
-            setTimeout(() => {
-                setLoading(false)
-            }, 1000);
+
+            // calling to the api 
+            const reqAndRes = await (await fetch(`${domain}api/urls/shortone`, {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({ url: input })
+            })).json();
+
+
+            if (reqAndRes.success) {
+                setRecieveUrls(reqAndRes.shortedurls);
+                setOrignalUrl(reqAndRes.originalurl);
+                toast.success(reqAndRes.message)
+            }
+
+            else {
+                setIsResponseError(true);
+                setResponseError(reqAndRes.message);
+                toast.error(reqAndRes.message)
+            }
+
         } catch (error) {
             setIsActiveResult(false)
             setLoading(false)
+            setIsResponseError(true);
+            setResponseError("Some went wrong ")
+            toast.error("Some went wrong")
         }
     }
 
@@ -60,9 +91,11 @@ const Form = () => {
 
 
 
-    
+
 
     return (
+        <>
+            <Toaster />
             <section className='form mt-5 mx-auto lg:w-[50%] w-full' >
                 <p className='text-lg text-black'>Please Enter Your URL</p>
 
@@ -83,7 +116,7 @@ const Form = () => {
                         {loading ? <Loading /> : <>
                             <h2 className="md:text-4xl text-2xl font-bold m-2 text-blue-900 inline-block border-b border-b-2 border-b-blue-700 border-dotted">Results</h2>
                             <ul className="mt-2">
-                               <ItemLink />
+                                <ItemLink />
                             </ul>
                         </>}
                     </section> : ""
@@ -91,6 +124,7 @@ const Form = () => {
 
 
             </section>
+        </>
     )
 }
 

@@ -6,7 +6,7 @@ export default function Home() {
     <main className="min-h-screen">
       <div className="container bg-white mx-auto p-5 shadow-md rounded-md my-5 shadow-gray-600">
        <Hero />
-       <Form />
+       <Form domain={process.env.DOMAIN} />
       </div>
     </main>
   );
