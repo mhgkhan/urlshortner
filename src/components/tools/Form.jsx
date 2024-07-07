@@ -14,7 +14,7 @@ const Form = ({ domain }) => {
 
 
     // response short urls states
-    const [reciveUrls, setRecieveUrls] = useState([]);
+    const [reciveUrls, setRecieveUrls] = useState(null);
     const [OriginalUrl, setOrignalUrl] = useState("");
     //  if response is error
     const [isResponseError, setIsResponseError] = useState(false);
@@ -66,9 +66,17 @@ const Form = ({ domain }) => {
             })).json();
 
 
+            setTimeout(() => {
+                setLoading(false)
+            }, 2000);
+
+            console.log(reqAndRes)
+
+
+
             if (reqAndRes.success) {
-                setRecieveUrls(reqAndRes.shortedurls);
-                setOrignalUrl(reqAndRes.originalurl);
+                setRecieveUrls(reqAndRes.data);
+                setOrignalUrl(reqAndRes.data.originalUrl);
                 toast.success(reqAndRes.message)
             }
 
@@ -115,8 +123,11 @@ const Form = ({ domain }) => {
                     isActiveResult ? <section className='w-full p-3 mt-2'>
                         {loading ? <Loading /> : <>
                             <h2 className="md:text-4xl text-2xl font-bold m-2 text-blue-900 inline-block border-b border-b-2 border-b-blue-700 border-dotted">Results</h2>
+                            <p className='text-lg text-black my-1'>Copy or save your shorted urls.</p>
                             <ul className="mt-2">
-                                <ItemLink />
+                                <ItemLink link={reciveUrls && reciveUrls.shortUrl1} />
+                                <ItemLink link={reciveUrls && reciveUrls.shortUrl2} />
+                                <ItemLink link={reciveUrls && reciveUrls.shortUrl3} />
                             </ul>
                         </>}
                     </section> : ""

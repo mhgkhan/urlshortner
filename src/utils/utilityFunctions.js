@@ -3,7 +3,7 @@ import Randomstring from "randomstring";
 
 export const sendResponse = (flag, message, data) => {
   return NextResponse.json({
-    flag,
+    success:flag,
     message,
     data: flag ? data : null,
   });
