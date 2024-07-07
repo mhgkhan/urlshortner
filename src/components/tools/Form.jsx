@@ -72,6 +72,9 @@ const Form = () => {
                 </div>
                 <button className='py-3 px-2 active:scale-95 text-xl bg-blue-950 text-white font-bold outline-none border border-1 border-blue-800 rounded-lg  hover:bg-white hover:text-yellow-600 hover:border-blue-700 w-full md:w-auto md:m-0 my-2'>SHORT NOW</button>
             </form>
+
+
+            
             {isPermissionOk ? <p className="text-red-800 px-2 py-1 text-center font-bold">Permission Denied: Please type your URL manually</p> : ""}
 
             {
