@@ -1,14 +1,11 @@
 "use client"
 
 import React, { useState } from 'react'
-import { FaCopy, FaLink, FaPaste } from 'react-icons/fa'
 import Loading from '../Loading';
-import { useRouter } from 'next/navigation';
-import { Toaster,toast } from 'react-hot-toast';
+import ItemLink from './ItemLink';
 
 const Form = () => {
 
-    const router = useRouter()
 
     // states for form input 
     const [input, setInput] = useState("");
@@ -31,8 +28,6 @@ const Form = () => {
             }, 50000);
         }
     }
-
-
 
 
     // function to change data in the input 
@@ -63,20 +58,11 @@ const Form = () => {
 
 
 
-    const copyLink = async text => {
-        try {
-            await navigator.clipboard.writeText(text);
-            toast.success("Link copied to clipboard")
-        } catch (error) {
-            toast.error("Please copy url manually.")
-        }
-    }
+
 
     
 
     return (
-        <>
-            <Toaster />
             <section className='form mt-5 mx-auto lg:w-[50%] w-full' >
                 <p className='text-lg text-black'>Please Enter Your URL</p>
 
@@ -97,11 +83,7 @@ const Form = () => {
                         {loading ? <Loading /> : <>
                             <h2 className="md:text-4xl text-2xl font-bold m-2 text-blue-900 inline-block border-b border-b-2 border-b-blue-700 border-dotted">Results</h2>
                             <ul className="mt-2">
-                                <li className='w-full flex items-center justify-between gap-2 p-3 text-lg border border-1 border-blue-600 rounded-full bg-yellow-100 text-blue-600 italic'>
-                                    <span className='active:scale-105 text-xl text-gray-600  cursor-pointer' onClick={() => router.push("")} ><FaLink /></span> &nbsp;
-                                    this is link this is
-                                    <span className='text-xl text-gray-600 cursor-pointer active:scale-105' onClick={()=>copyLink("this is text to cpy")} ><FaCopy /></span>
-                                </li>
+                               <ItemLink />
                             </ul>
                         </>}
                     </section> : ""
@@ -109,7 +91,6 @@ const Form = () => {
 
 
             </section>
-        </>
     )
 }
 
