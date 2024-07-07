@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { FaCopy, FaLink, FaPaste } from 'react-icons/fa'
 import Loading from '../Loading';
 import { useRouter } from 'next/navigation';
+import { Toaster,toast } from 'react-hot-toast';
 
 const Form = () => {
 
@@ -61,39 +62,54 @@ const Form = () => {
     }
 
 
+
+    const copyLink = async text => {
+        try {
+            await navigator.clipboard.writeText(text);
+            toast.success("Link copied to clipboard")
+        } catch (error) {
+            toast.error("Please copy url manually.")
+        }
+    }
+
+    
+
     return (
-        <section className='form mt-5 mx-auto lg:w-[50%] w-full' >
-            <p className='text-lg text-black'>Please Enter Your URL</p>
+        <>
+            <Toaster />
+            <section className='form mt-5 mx-auto lg:w-[50%] w-full' >
+                <p className='text-lg text-black'>Please Enter Your URL</p>
 
-            <form onSubmit={submitUrlForm} className='w-full flex items-center justify-center gap-1 md:flex-row flex-col'>
-                <div className=" flex items-center justify-between gap-1 input border border-1 border-blue-600 rounded-md md:w-[75%] w-full p-1 hover:shadow-md hover:shadow-gray-200">
-                    <input type="url" value={input} onChange={changeInput} required name='url' id='url' placeholder='Enter Url' className=' placeholder:font-bold text-lg px-2 w-[80%] border-none outline-none py-2 ' />
-                    <span onClick={pasteCopied} className='cursor-pointer active:scale-105 text-3xl text-blue-900 px-2 hover:text-yellow-500'><FaPaste /></span>
-                </div>
-                <button className='py-3 px-2 active:scale-95 text-xl bg-blue-950 text-white font-bold outline-none border border-1 border-blue-800 rounded-lg  hover:bg-white hover:text-yellow-600 hover:border-blue-700 w-full md:w-auto md:m-0 my-2'>SHORT NOW</button>
-            </form>
-
-
-            
-            {isPermissionOk ? <p className="text-red-800 px-2 py-1 text-center font-bold">Permission Denied: Please type your URL manually</p> : ""}
-
-            {
-                isActiveResult ? <section className='w-full p-3 mt-2'>
-                  {  loading? <Loading /> :  <>
-                        <h2 className="md:text-4xl text-2xl font-bold m-2 text-blue-900 inline-block border-b border-b-2 border-b-blue-700 border-dotted">Results</h2>
-                        <ul className="mt-2">
-                            <li className='w-full flex items-center justify-between gap-2 p-3 text-lg border border-1 border-blue-600 rounded-full bg-yellow-100 text-blue-600 italic'>
-                                <span className='active:scale-105 text-xl text-gray-600  cursor-pointer' onClick={()=>router.push("")} ><FaLink /></span> &nbsp;
-                                this is link this is 
-                                <span className='text-xl text-gray-600 cursor-pointer active:scale-105' onClick={()=>router.push("")} ><FaCopy /></span>
-                            </li>
-                        </ul>
-                    </> }
-                </section> : ""
-            }
+                <form onSubmit={submitUrlForm} className='w-full flex items-center justify-center gap-1 md:flex-row flex-col'>
+                    <div className=" flex items-center justify-between gap-1 input border border-1 border-blue-600 rounded-md md:w-[75%] w-full p-1 hover:shadow-md hover:shadow-gray-200">
+                        <input type="url" value={input} onChange={changeInput} required name='url' id='url' placeholder='Enter Url' className=' placeholder:font-bold text-lg px-2 w-[80%] border-none outline-none py-2 ' />
+                        <span onClick={pasteCopied} className='cursor-pointer active:scale-105 text-3xl text-blue-900 px-2 hover:text-yellow-500'><FaPaste /></span>
+                    </div>
+                    <button className='py-3 px-2 active:scale-95 text-xl bg-blue-950 text-white font-bold outline-none border border-1 border-blue-800 rounded-lg  hover:bg-white hover:text-yellow-600 hover:border-blue-700 w-full md:w-auto md:m-0 my-2'>SHORT NOW</button>
+                </form>
 
 
-        </section>
+
+                {isPermissionOk ? <p className="text-red-800 px-2 py-1 text-center font-bold">Permission Denied: Please type your URL manually</p> : ""}
+
+                {
+                    isActiveResult ? <section className='w-full p-3 mt-2'>
+                        {loading ? <Loading /> : <>
+                            <h2 className="md:text-4xl text-2xl font-bold m-2 text-blue-900 inline-block border-b border-b-2 border-b-blue-700 border-dotted">Results</h2>
+                            <ul className="mt-2">
+                                <li className='w-full flex items-center justify-between gap-2 p-3 text-lg border border-1 border-blue-600 rounded-full bg-yellow-100 text-blue-600 italic'>
+                                    <span className='active:scale-105 text-xl text-gray-600  cursor-pointer' onClick={() => router.push("")} ><FaLink /></span> &nbsp;
+                                    this is link this is
+                                    <span className='text-xl text-gray-600 cursor-pointer active:scale-105' onClick={()=>copyLink("this is text to cpy")} ><FaCopy /></span>
+                                </li>
+                            </ul>
+                        </>}
+                    </section> : ""
+                }
+
+
+            </section>
+        </>
     )
 }
 
