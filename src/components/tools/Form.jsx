@@ -59,7 +59,7 @@ const Form = ({ domain }) => {
         try {
 
             // calling to the api 
-            const reqAndRes = await (await fetch(`${domain}api/urls/shortone`, {
+            const reqAndRes = await (await fetch(`${domain}api/urls/regiester`, {
                 method: "POST",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify({ url: input })
@@ -68,7 +68,7 @@ const Form = ({ domain }) => {
 
             setTimeout(() => {
                 setLoading(false)
-            }, 2000);
+            }, 1000);
 
             console.log(reqAndRes)
 
@@ -125,9 +125,7 @@ const Form = ({ domain }) => {
                             <h2 className="md:text-4xl text-2xl font-bold m-2 text-blue-900 inline-block border-b border-b-2 border-b-blue-700 border-dotted">Results</h2>
                             <p className='text-lg text-black my-1'>Copy or save your shorted urls.</p>
                             <ul className="mt-2">
-                                <ItemLink link={reciveUrls && reciveUrls.shortUrl1} />
-                                <ItemLink link={reciveUrls && reciveUrls.shortUrl2} />
-                                <ItemLink link={reciveUrls && reciveUrls.shortUrl3} />
+                                <ItemLink link={reciveUrls && reciveUrls.shortedUrl} />
                             </ul>
                         </>}
                     </section> : ""

@@ -7,13 +7,17 @@ const UrlSchema = mongoose.Schema({
         unique:true
     },
 
-    shortUrl1: String,
-    shortUrl2: String,
-    shortUrl3: String,
+    shortedUrl:{
+        type:String,
+        required:true,
+        unique:true
+    },
 
-    clicks:{
-        type:Number,
-    }
+    urlId:{
+        type:String,
+        required:true,
+        unique:true
+    },
 
 },{
     timestamps:true
