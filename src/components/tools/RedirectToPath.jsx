@@ -15,7 +15,11 @@ const RedirectToPath = ({ path }) => {
     })
 
     return (
-        <div>Redirecting ...</div>
+        <main className="min-h-screen">
+            <div className="container">
+                <p className='text-lg text-blue-950 text-center'>Redirecting...</p>
+            </div>
+        </main>
     )
 }
 
