@@ -1,29 +1,43 @@
+"use server";
+
 import Loading from "@/components/Loading";
+import RedirectToPath from "@/components/tools/RedirectToPath";
 import UrlStr from "@/db/models/Urls";
 import { redirect } from "next/navigation";
-import { NextResponse } from "next/server";
 import React from "react";
 
 const page = async ({ params }) => {
+  const { url } = params;
+
   try {
-    // console.log(params)
-    const { url } = params;
     if (url !== null && url !== undefined) {
-      const checkUrlId = await UrlStr.findOne({ urlId: url[0] });
-      if (checkUrlId && checkUrlId !== null) {
-        console.log(checkUrlId);
-        redirect(checkUrlId.originalUrl);
-      } else {
-        redirect("/");
+      const checkUrlId = await UrlStr.findOne({ urlId: url });
+
+      if (checkUrlId == undefined || checkUrlId == null)
+        return (
+          <main>
+            <div className="container mx-auto flex items-center justify-center gap-3 flex-col">
+              <h2 className="text-3xl text-blue-950">Your Url Not Found.</h2>
+              <h3 className="text-2xl text-blue-500 underline ">HOME</h3>
+            </div>
+          </main>
+        );
+      else {
+        return <RedirectToPath path={checkUrlId.originalUrl} />
       }
+      // console.log(checkUrlId)
     } else {
-      redirect("/");
+      return <RedirectToPath path={"/"} />
     }
   } catch (error) {
+    console.log(error);
     return (
-      <main>
+      <main className=" flex items-center justify-center gap-3 flex-col">
         <div className="container mx-auto">
           <Loading />
+          <h2 className="text-center text-3xl text-blue-950">
+            Some Error Occured.
+          </h2>
         </div>
       </main>
     );
