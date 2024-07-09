@@ -19,6 +19,10 @@ const UrlSchema = mongoose.Schema({
         unique:true
     },
 
+    isPrivate:{
+        type:String
+    }
+
 },{
     timestamps:true
 })
