@@ -11,10 +11,7 @@ const RedirectToPath = ({ path }) => {
         if (!path || path == undefined || path == NaN) {
             router.push("/")
         }
-
-        return () => {
-            router.push(path)
-        }
+        router.push(path)
     })
 
     return (
