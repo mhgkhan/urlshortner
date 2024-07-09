@@ -1,10 +1,18 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const clickOnUrlSchema = mongoose.Schema({
-    clicks: Number
-},{
-    timestamps:true
-})
+const clickOnUrlSchema = mongoose.Schema(
+  {
+    clicks: Number,
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "urls",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const ClicksStr = mongoose.models.clicks || mongoose.model("clicks", clickOnUrlSchema)
-export default ClicksStr
+const ClicksStr =
+  mongoose.models.clicks || mongoose.model("clicks", clickOnUrlSchema);
+export default ClicksStr;
