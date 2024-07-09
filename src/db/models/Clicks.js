@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const clickOnUrlSchema = mongoose.Schema(
   {
-    clicks: Number,
     id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "urls",

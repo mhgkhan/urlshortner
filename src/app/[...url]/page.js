@@ -2,6 +2,7 @@
 
 import Loading from "@/components/Loading";
 import RedirectToPath from "@/components/tools/RedirectToPath";
+import ClicksStr from "@/db/models/Clicks";
 import UrlStr from "@/db/models/Urls";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -23,6 +24,10 @@ const page = async ({ params }) => {
           </main>
         );
       else {
+
+        // adding this click to the click model 
+        const clicked = new ClicksStr({id: checkUrlId._id});
+        await clicked.save();
         return <RedirectToPath path={checkUrlId.originalUrl} />
       }
       // console.log(checkUrlId)

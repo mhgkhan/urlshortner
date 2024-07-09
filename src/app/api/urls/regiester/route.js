@@ -25,12 +25,6 @@ export async function POST(request) {
         }${generateRandomStr(3)}`;
         const shortedUrl = `${domain}${urlId}/`;
 
-        // const createdUr1 = `${domain}${Number.parseInt(prevUrlsLength.length)+1}${generateRandomStr(3)}/`;
-        // const createdUr2 = `${domain}${Number.parseInt(prevUrlsLength.length)+1}${generateRandomStr(3)}/`;
-        // const createdUr3 = `${domain}${Number.parseInt(prevUrlsLength.length)+1}${generateRandomStr(3)}/`;
-
-        // console.log("the domain is", domain, "and the created url is ", createdUr1, createdUr2, createdUr3)
-
         // storing this into the database
         const doc = new UrlStr({
           originalUrl: url,
