@@ -4,7 +4,7 @@ import Loading from "@/components/Loading";
 import RedirectToPath from "@/components/tools/RedirectToPath";
 import ClicksStr from "@/db/models/Clicks";
 import UrlStr from "@/db/models/Urls";
-import { redirect } from "next/navigation";
+import Link from "next/link";
 import React from "react";
 
 const page = async ({ params }) => {
@@ -16,10 +16,10 @@ const page = async ({ params }) => {
 
       if (checkUrlId == undefined || checkUrlId == null)
         return (
-          <main>
-            <div className="container mx-auto flex items-center justify-center gap-3 flex-col">
+          <main className="min-h-screen">
+            <div className="container mx-auto flex items-center justify-center gap-3 flex-col py-10 ">
               <h2 className="text-3xl text-blue-950">Your Url Not Found.</h2>
-              <h3 className="text-2xl text-blue-500 underline ">HOME</h3>
+              <Link href={'/'} className=" p-2 my-2 mx-auto block rounded-md border-none bg-blue-800 text-yellow-400 text-xl ">Back</Link>
             </div>
           </main>
         );
@@ -35,9 +35,10 @@ const page = async ({ params }) => {
       return <RedirectToPath path={"/"} />
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+
     return (
-      <main className=" flex items-center justify-center gap-3 flex-col">
+      <main className=" min-h-screen flex items-center justify-center gap-3 flex-col">
         <div className="container mx-auto">
           <Loading />
           <h2 className="text-center text-3xl text-blue-950">
