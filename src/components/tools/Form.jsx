@@ -6,7 +6,7 @@ import ItemLink from './ItemLink';
 import { FaPaste } from 'react-icons/fa';
 import { Toaster, toast } from 'react-hot-toast';
 
-const Form = ({ domain }) => {
+const Form = ({ domain, font }) => {
 
 
     // states for form input 
@@ -122,7 +122,7 @@ const Form = ({ domain }) => {
                 {
                     isActiveResult ? <section className='w-full p-3 mt-2'>
                         {loading ? <Loading /> : <>
-                            <h2 className="md:text-4xl text-2xl font-bold m-2 text-blue-900 inline-block border-b border-b-2 border-b-blue-700 border-dotted">Results</h2>
+                            <h2 className={`${font} md:text-4xl text-2xl font-bold m-2 text-blue-900 inline-block border-b border-b-2 border-b-blue-700 border-dotted`}>Results</h2>
                             <p className='text-lg text-black my-1'>Copy or save your shorted urls.</p>
                             <ul className="mt-2">
                                 <ItemLink link={reciveUrls && reciveUrls.shortedUrl} />
