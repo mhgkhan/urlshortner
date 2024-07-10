@@ -9,10 +9,10 @@ const Navbar = () => {
                 <Link href={"/"} className='text-xl hover:font-bold transition duration-500 text-white md:p-3 p-2 hover:bg-gray-100 hover:text-yellow-700' >HOME</Link>
             </li>
             <li>
-                <Link href={"/about"} className='text-xl hover:font-bold transition duration-500 text-white md:p-3 p-2 hover:bg-gray-100 hover:text-yellow-700' >ABOUT</Link>
+                <Link href={"/search"} className='text-xl hover:font-bold transition duration-500 text-white md:p-3 p-2 hover:bg-gray-100 hover:text-yellow-700' >SEARCH</Link>
             </li>
             <li>
-                <Link href={"/search"} className='text-xl hover:font-bold transition duration-500 text-white md:p-3 p-2 hover:bg-gray-100 hover:text-yellow-700' >SEARCH</Link>
+                <Link href={"/about"} className='text-xl hover:font-bold transition duration-500 text-white md:p-3 p-2 hover:bg-gray-100 hover:text-yellow-700' >ABOUT</Link>
             </li>
             <li>
                 <Link href={"/login"} className='text-xl hover:font-bold transition duration-500 text-white md:p-3 p-2 hover:bg-gray-100 hover:text-yellow-700' > LOGIN </Link>
