@@ -20,7 +20,7 @@ const UrlSchema = mongoose.Schema({
     },
 
     isPrivate:{
-        type:String
+        type:Boolean
     }
 
 },{

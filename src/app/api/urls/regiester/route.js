@@ -30,6 +30,8 @@ export async function POST(request) {
           originalUrl: url,
           shortedUrl,
           urlId,
+          isPrivate:false
+
         });
 
         const saved = await doc.save();

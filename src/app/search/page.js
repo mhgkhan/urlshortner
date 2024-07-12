@@ -7,7 +7,7 @@ const route = () => {
         <div className='container mx-auto p-2'>
           
            <SearchForm />
-
+           
 
         </div>
     </main>

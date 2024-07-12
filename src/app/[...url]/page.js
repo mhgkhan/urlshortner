@@ -26,7 +26,7 @@ const page = async ({ params }) => {
       else {
 
         // adding this click to the click model 
-        const clicked = new ClicksStr({id: checkUrlId._id});
+        const clicked = new ClicksStr({urlId: checkUrlId._id});
         await clicked.save();
         return <RedirectToPath path={checkUrlId.originalUrl} />
       }
