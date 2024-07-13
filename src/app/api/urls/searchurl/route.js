@@ -2,9 +2,11 @@ import ClicksStr from "@/db/models/Clicks";
 import UrlStr from "@/db/models/Urls";
 import { sendResponse } from "@/utils/utilityFunctions";
 
-export async function GET(request, content) {
+export async function POST(request) {
   try {
-    const { url } = content.params;
+
+    const body = await request.json()
+    const { url } = body;
 
 
     if (url) {
@@ -13,14 +15,14 @@ export async function GET(request, content) {
         // let newurl = `${url[0]}/${url[1]}`
 
         // console.log(newurl)
-      const findedUrl = await UrlStr.findOne({ urlId: url });
+      const findedUrl = await UrlStr.findOne({ shortedUrl: url, isPrivate:false });
       if (!findedUrl || findedUrl == undefined || findedUrl == NaN) {
         return sendResponse(false, "Url not exists", null);
       } else {
 
         const data = {
             originalUrl: findedUrl.originalUrl,
-            createddDate: findedUrl.createdAt,
+            createdDate: findedUrl.createdAt,
             shortedUrl: findedUrl.shortedUrl,
             clicks: []
         }
