@@ -24,6 +24,7 @@ export async function POST(request) {
             originalUrl: findedUrl.originalUrl,
             createdDate: findedUrl.createdAt,
             shortedUrl: findedUrl.shortedUrl,
+            urlId: findedUrl.urlId,
             clicks: []
         }
         // fetching the clicks (history) of the url 
