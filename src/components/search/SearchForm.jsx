@@ -52,7 +52,8 @@ const SearchForm = ({ domain, font }) => {
             else {
                 setIsRecieveError(true);
                 setReceiveError(reqAndRes.message);
-                setLoading(false)
+                setLoading(false);
+                setRecievedata(null)
             }
 
 
@@ -90,11 +91,11 @@ const SearchForm = ({ domain, font }) => {
                             if you have an account here and you set your url to private so public can't be access your url.
                         </p>
                     </>
-                        : loading ? <div className='my-2'><Loading /></div> : <>
-                            <h1 className={`text-3xl  my-2 text-blue-900 font-bold flex items-center justify-start flex-wrap ${font}`}>Result! &nbsp; <span className='text-wrap break-all text-yellow-700 '>{input}</span></h1>
-                            <Table heading1={"Original Url"} heading2={"Shorted Url "} value1={recievedata && recievedata.originalUrl} value2={recievedata && recievedata.shortedUrl} />
-                            <Table heading1={"Creted Date"} heading2={"Url Id"} value1={new Date(recievedata && recievedata.createdDate).toLocaleDateString()} value2={recievedata && recievedata.urlId} />
-                        </>
+                        : loading ? <div className='my-2'><Loading /></div> : isRecieveError ? <h2 className="text-2xl text-red-400 text-center">{recieveError}</h2> : <>
+                        <h1 className={`text-3xl  my-2 text-blue-900 font-bold flex items-center justify-start flex-wrap ${font}`}>Result! &nbsp; <span className='text-wrap break-all text-yellow-700 '>{input}</span></h1>
+                        <Table heading1={"Original Url"} heading2={"Shorted Url "} value1={recievedata && recievedata.originalUrl} value2={recievedata && recievedata.shortedUrl} />
+                        <Table heading1={"Creted Date"} heading2={"Url Id"} value1={new Date(recievedata && recievedata.createdDate).toLocaleDateString()} value2={recievedata && recievedata.urlId} />
+                    </>
                 }
             </section>
 
