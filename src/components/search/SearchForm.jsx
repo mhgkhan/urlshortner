@@ -14,7 +14,6 @@ const SearchForm = ({ domain, font }) => {
     // onchange function for input 
     const changeinput = e => setInput(e.target.value);
 
-
     // states for fom input submission 
     const [recievedata, setRecievedata] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -30,7 +29,7 @@ const SearchForm = ({ domain, font }) => {
         try {
             setLoading(true)
             setIsContentLoaded(true)
-            console.log("form submitted ")
+            // console.log("form submitted ")
 
             const reqAndRes = await (await fetch(`${domain}api/urls/searchurl/`, {
                 method: 'POST',
@@ -38,7 +37,7 @@ const SearchForm = ({ domain, font }) => {
                 body: JSON.stringify({ url: input })
             })).json();
 
-            console.log(reqAndRes)
+            // console.log(reqAndRes)
 
             if (reqAndRes.success) {
                 setRecievedata(reqAndRes.data)
@@ -58,7 +57,7 @@ const SearchForm = ({ domain, font }) => {
 
 
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             setLoading(false)
             setIsRecieveError(true)
             setReceiveError("SOME WENT WRONG PLEASE TRY AGAIN LATER ")
@@ -110,9 +109,6 @@ const SearchForm = ({ domain, font }) => {
                         </>
                 }
             </section>
-
-
-
         </>
 
     )

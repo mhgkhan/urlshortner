@@ -70,7 +70,7 @@ const Form = ({ domain, font }) => {
                 setLoading(false)
             }, 1000);
 
-            console.log(reqAndRes)
+            // console.log(reqAndRes)
 
 
 
