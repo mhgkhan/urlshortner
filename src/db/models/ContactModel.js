@@ -19,4 +19,4 @@ const contactUsStr = mongoose.Schema({
 })
 
 const ContactModel = mongoose.models.contacts || mongoose.model("contacts",contactUsStr)
-export default contactUsStr
+export default ContactModel
