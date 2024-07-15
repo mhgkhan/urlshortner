@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { FaEnvelope, FaPhone, FaUser, FaSms } from 'react-icons/fa';
 
 
@@ -38,8 +39,9 @@ const ContactusContainer = ({ domain, font }) => {
     e.preventDefault();
     if (validate()) {
       console.log(form);
-      alert('Form submitted successfully');
+      // alert('Form submitted successfully');
       try {
+        const toastLoading = toast.loading("wait....")
         const reqAndRes = await (await fetch(`${domain}api/users/contactus`, {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -56,23 +58,29 @@ const ContactusContainer = ({ domain, font }) => {
           setTimeout(() => {
             setLoading(false)
           }, 1000);
+          toast.dismiss(toastLoading)
+          toast.success(reqAndRes.message)
           setForm({ name: '', email: '', message: '' });
         }
         else {
           setResponse(reqAndRes.message)
           setIsResponseErr(true)
           setResponseErr(reqAndRes.message)
+          toast.dismiss(toastLoading)
           setTimeout(() => {
             setLoading(false)
           }, 1000);
+          toast.error(reqAndRes.message)
         }
-
-
+        
+        
       } catch (error) {
         console.log(error)
         setIsResponseErr(true)
         setResponseErr(" SOME WENT WRONG..")
         setLoading(false)
+        toast.dismiss()
+        toast.error("Some Went Wrong..")
       }
     }
   };
@@ -83,6 +91,7 @@ const ContactusContainer = ({ domain, font }) => {
   return (
 
     <div className="container mx-auto px-4 py-8 ">
+    <Toaster /> 
       <h1 className="text-4xl font-bold text-center text-blue-950 mb-8">Contact Us</h1>
       <p className="text-center text-gray-700 mb-8">
         Have any questions or concerns? We're always ready to help! Contact us by phone, email, or by filling out the form below.
