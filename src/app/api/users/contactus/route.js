@@ -5,7 +5,7 @@ export async function POST(request) {
   try {
     const payload = await request.json();
 
-    const { name, email, message } = request;
+    const { name, email, message } = payload;
 
     if (!name || !email || !message)
       return sendResponse(false, "Data Validation Field", null);
