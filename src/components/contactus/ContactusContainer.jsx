@@ -5,42 +5,83 @@ import { useState } from 'react';
 import { FaEnvelope, FaPhone, FaUser, FaSms } from 'react-icons/fa';
 
 
-const ContactusContainer = ({domain, font}) => {
+const ContactusContainer = ({ domain, font }) => {
 
-    const [form, setForm] = useState({ name: '', email: '', message: '' });
-    const [errors, setErrors] = useState({});
-  
-    const validate = () => {
-      let tempErrors = {};
-      tempErrors.name = form.name ? '' : 'Name is required.';
-      tempErrors.email = form.email ? '' : 'Email is required.';
-      if (form.email && !/\S+@\S+\.\S+/.test(form.email)) {
-        tempErrors.email = 'Email is not valid.';
-      }
-      tempErrors.message = form.message ? '' : 'Message is required.';
-      setErrors(tempErrors);
-      return Object.values(tempErrors).every(x => x === '');
-    };
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setForm({ ...form, [name]: value });
-    };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if (validate()) {
-        console.log(form);
-        alert('Form submitted successfully');
-        setForm({ name: '', email: '', message: '' });
-      }
-    };
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState({});
 
-    
+  const validate = () => {
+    let tempErrors = {};
+    tempErrors.name = form.name ? '' : 'Name is required.';
+    tempErrors.email = form.email ? '' : 'Email is required.';
+    if (form.email && !/\S+@\S+\.\S+/.test(form.email)) {
+      tempErrors.email = 'Email is not valid.';
+    }
+    tempErrors.message = form.message ? '' : 'Message is required.';
+    setErrors(tempErrors);
+    return Object.values(tempErrors).every(x => x === '');
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+
+  const [loading, setLoading] = useState(false)
+  const [response, setResponse] = useState("")
+  const [isResponseErr, setIsResponseErr] = useState(false)
+  const [responseErr, setResponseErr] = useState("")
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validate()) {
+      console.log(form);
+      alert('Form submitted successfully');
+      try {
+        const reqAndRes = await (await fetch(`${domain}api/users/contactus`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            ...form
+          })
+        })).json();
+
+
+        if (reqAndRes.success) {
+          setResponse(reqAndRes.message)
+          setIsResponseErr(false)
+          setResponseErr("")
+          setTimeout(() => {
+            setLoading(false)
+          }, 1000);
+          setForm({ name: '', email: '', message: '' });
+        }
+        else {
+          setResponse(reqAndRes.message)
+          setIsResponseErr(true)
+          setResponseErr(reqAndRes.message)
+          setTimeout(() => {
+            setLoading(false)
+          }, 1000);
+        }
+
+
+      } catch (error) {
+        console.log(error)
+        setIsResponseErr(true)
+        setResponseErr(" SOME WENT WRONG..")
+        setLoading(false)
+      }
+    }
+  };
+
+
 
 
   return (
- 
+
     <div className="container mx-auto px-4 py-8 ">
       <h1 className="text-4xl font-bold text-center text-blue-950 mb-8">Contact Us</h1>
       <p className="text-center text-gray-700 mb-8">
@@ -100,10 +141,10 @@ const ContactusContainer = ({domain, font}) => {
       </form>
       <div className="mt-8 text-center">
         <p className="text-gray-700 mb-2">
-            <a href="tel:+92 325 1857693"> <FaPhone className="inline mr-2" /> + +92 325 1857693</a>
+          <a href="tel:+92 325 1857693"> <FaPhone className="inline mr-2" /> + +92 325 1857693</a>
         </p>
         <p className="text-gray-700">
-            <a href="mailto:muhammadhasnainghazna@gmail.com"> <FaEnvelope className="inline mr-2" /> muhammadhasnainghazna@gmail.com</a>
+          <a href="mailto:muhammadhasnainghazna@gmail.com"> <FaEnvelope className="inline mr-2" /> muhammadhasnainghazna@gmail.com</a>
         </p>
       </div>
     </div>
