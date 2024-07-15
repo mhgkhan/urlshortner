@@ -1,4 +1,4 @@
-import ContactModel from "@/db/models/ContactModel";
+import ContactUs from "@/db/models/ContactModel";
 import { sendResponse } from "@/utils/utilityFunctions";
 
 export async function POST(request) {
@@ -6,16 +6,14 @@ export async function POST(request) {
     const payload = await request.json();
     const { name, email, message } = payload;
 
-    if (!name || !email || !message)
+    if (!name || !email || !message){
       return sendResponse(false, "Data Validation Field", null);
+    }
+
     else {
-      console.log(payload);
-      const saveMessage = new ContactModel({
-        name: name,
-        email: email,
-        message: message,
-      });
-      const savedMessage = await saveMessage.save();
+      console.log(payload); 
+      const doc = new ContactUs({name,email,message})
+      const savedMessage = await doc.save();
 
       return sendResponse(true, "Message sent sucessfully...", null);
     }

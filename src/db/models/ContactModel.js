@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const contactUsStr = mongoose.Schema({
+const ContactUsStr = mongoose.Schema({
     name:{
         type: String,
         required:true
@@ -18,5 +18,5 @@ const contactUsStr = mongoose.Schema({
     timestamps:true
 })
 
-const ContactModel = mongoose.models.contacts || mongoose.model("contacts",contactUsStr)
-export default ContactModel
+const ContactUs = mongoose.models.contact || mongoose.model("contact", ContactUsStr)
+export default ContactUs
