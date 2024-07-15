@@ -38,7 +38,6 @@ export async function POST(request) {
             data.clicks.push(checkThisUrlHistory)
             return sendResponse(true, "Url Record Fetched", data)
         }
-
       }
     } else {
       return sendResponse(
