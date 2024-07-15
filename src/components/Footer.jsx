@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { FaFacebook, FaGithub } from "react-icons/fa"
+import { FaFacebook, FaGithub, FaWhatsapp } from "react-icons/fa"
 import {} from "react-icons/gr"
 
 const Footer = () => {
@@ -10,16 +10,16 @@ const Footer = () => {
             <p>Copyright&copy; Allright reserved 2024 <span className="text-yellow-300">GH URL SHORTER</span> </p>
             <div className="flex items-center gap-4 justify-center">
               
-                <Link href={'/gh'} className='text-xl text-yellow-300 font-bold'>
+                <Link href={'https://facebook.com/mhghazna'} className='text-xl text-yellow-300 font-bold'>
                     <FaFacebook />
                 </Link>
               
-                <Link href={'/gh'} className='text-xl text-yellow-300 font-bold'>
+                <Link href={'https://github.com/mhgkhan'} className='text-xl text-yellow-300 font-bold'>
                     <FaGithub />
                 </Link>
               
-                <Link href={'/gh'} className='text-xl text-yellow-300 font-bold'>
-                <FaGithub />
+                <Link href={'https://wa.me/+923251857693'} className='text-xl text-yellow-300 font-bold'>
+                <FaWhatsapp />
                 </Link>
 
 
