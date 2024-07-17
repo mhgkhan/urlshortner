@@ -82,7 +82,7 @@ const page = () => {
                     <h2 className="text-2xl text-blue-950 font-bold mb-4">Join Us</h2>
 
                     <p className="text-lg text-gray-700 mb-8">
-                        Join GH URL Shortener today and start simplifying your links. <Link href="/signup" className='text-blue-600 hover:underline'> Sign up</Link> to access additional
+                        Join GH URL Shortener today and start simplifying your links. <Link href="/login" className='text-blue-600 hover:underline'> Login</Link> to access additional
                         features and stay updated on the latest developments in link management.
                     </p>
                 </div>
