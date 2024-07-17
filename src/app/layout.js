@@ -1,12 +1,14 @@
 import "./globals.css";
 
 import { New_Rocker } from "next/font/google";
-import { Glass_Antiqua } from "next/font/google";
+import { Dosis } from "next/font/google";
+
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const NewRoker = New_Rocker({ subsets: ["latin"], weight: ["400"] });
-const GlassAntiqua = Glass_Antiqua({ subsets: ["latin"], weight: ["400"] });
+const DosisFont = Dosis({subsets:["latin"], weight:["400","500","300"]})
 
 export const metadata = {
   title: "GH Url Shortner",
@@ -39,7 +41,7 @@ export default function RootLayout({ children }) {
         <meta name="msapplication-TileColor" content="#b36db6" />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className={`${GlassAntiqua.className} bg-gray-100`}>
+      <body className={`${Dosis.className} bg-gray-100`}>
         <Header />
         {children}
         <Footer />
