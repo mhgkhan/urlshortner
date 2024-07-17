@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
         <meta name="msapplication-TileColor" content="#b36db6" />
         <meta name="theme-color" content="#ffffff" />
       </head>
-      <body className={`${Dosis.className} bg-gray-100`}>
+      <body className={`${DosisFont.className} bg-gray-100`}>
         <Header />
         {children}
         <Footer />
