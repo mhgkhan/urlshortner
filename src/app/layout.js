@@ -9,8 +9,8 @@ export const NewRoker = New_Rocker({ subsets: ["latin"], weight: ["400"] });
 const GlassAntiqua = Glass_Antiqua({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata = {
-  title: "GH UrlShortner",
-  description: "GH UrlShortner is a powerful and user-friendly URL shortening service that transforms long links into concise, 8-character URLs. Our platform ensures fast, reliable, and secure link shortening for easy sharing and improved accessibility. Simplify your links and enhance your digital presence with GH UrlShortner today! Built with cutting-edge technologies like Next.js and styled with TailwindCSS.",
+  title: "Url Shortify || urlshortify.com",
+  description: "url Shortify is a powerful and user-friendly URL shortening service that transforms long links into concise, 8-character URLs. Our platform ensures fast, reliable, and secure link shortening for easy sharing and improved accessibility. Simplify your links and enhance your digital presence with GH UrlShortner today! Built with cutting-edge technologies like Next.js and styled with TailwindCSS.",
   keywords: "URL shortener, link shortener, shorten URLs, 8-character URLs, URL shortening service, fast URL shortener, secure URL shortener, URL management, link sharing, GH UrlShortner",
   author: "mhgkhan",
   url: "https://usgh.netlify.app",
@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+      <meta name="google-site-verification" content="x9YuyIlhUHD9CsateViRxBhr5jAlA7i_TmndcM15By8" />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -51,7 +52,6 @@ export default function RootLayout({ children }) {
         <meta name="msapplication-TileColor" content="#b36db6" />
         <meta name="theme-color" content="#ffffff" />
         
-        <meta name="google-site-verification" content="x9YuyIlhUHD9CsateViRxBhr5jAlA7i_TmndcM15By8" />
       </head>
       <body className={`${GlassAntiqua.className} bg-gray-100`}>
         <Header />
