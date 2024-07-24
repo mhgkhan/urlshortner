@@ -7,5 +7,7 @@ export const metadata = {
 }
 
 export default async function aboutLayout({children}){
-    return{children}
+    return<>
+    {children}
+    </>
 }
