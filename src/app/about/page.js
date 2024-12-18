@@ -1,5 +1,5 @@
 import React from 'react'
-import { NewRoker } from '../layout'
+import { chakra_Petch } from '../layout'
 
 import Link from 'next/link';
 import { HiOutlineCheckCircle } from 'react-icons/hi';

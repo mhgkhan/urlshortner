@@ -1,12 +1,13 @@
 import "./globals.css";
 
-import { New_Rocker } from "next/font/google";
-import { Glass_Antiqua } from "next/font/google";
+import { New_Rocker, Chakra_Petch } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-export const NewRoker = New_Rocker({ subsets: ["latin"], weight: ["400"] });
-const GlassAntiqua = Glass_Antiqua({ subsets: ["latin"], weight: ["400"] });
+// export const chakra_Petch = New_Rocker({ subsets: ["latin"], weight: ["400"] });
+export const chakra_Petch = Chakra_Petch({ subsets: ["latin"], weight: ["600"] });
+const ibm_Plex_Sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["300"] });
 
 export const metadata = {
   title: "GH UrlShortner || usgh.com",
@@ -53,7 +54,7 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#ffffff" />
         
       </head>
-      <body className={`${GlassAntiqua.className} bg-gray-100`}>
+      <body className={`${ibm_Plex_Sans.className} bg-gray-100`}>
         <Header />
         {children}
         <Footer />
