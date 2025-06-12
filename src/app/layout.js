@@ -36,6 +36,7 @@ export default function RootLayout({ children }) {
           sizes="180x180"
           href="/apple-touch-icon.png"
         />
+        <meta name="google-adsense-account" content="ca-pub-1375177597277112"></meta>
         <link
           rel="icon"
           type="image/png"
